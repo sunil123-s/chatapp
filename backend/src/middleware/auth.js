@@ -7,7 +7,7 @@ dotenv.config();
 
 const jwt_token = process.env.JWT_SECRET;
 if(!jwt_token){
-    console.log('jwt is not proivided')
+    console.log('jwt is not proividedw why')
 }
 
 export const protectedRoute = async(req,res,next) => {

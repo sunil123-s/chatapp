@@ -10,14 +10,12 @@ import path from "path"
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-dotenv.config()
-
 const router = express.Router()
 
-const jwt_token = process.env.JWT_SECRET; 
-if(!jwt_token){
-    console.log("jwtSecrety is not provided")
-} 
+dotenv.config()
+console.log("Environment Variables: ", process.env)
+const jwt_token = process.env.JWT_SECRET;
+if(!jwt_token){console.log("jwt is not provided")}
 
 router.post("/signup",upload.single('profileImg'), async(req, res) => {
     try {

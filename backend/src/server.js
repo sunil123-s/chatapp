@@ -15,6 +15,8 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 const PORT = process.env.PORT || 8000;
+const frontendUrl = process.env.FRONTEND_URL || "https://chatapp-beta-nine.vercel.app";
+
 const app = express();
 
 app.use((err, req, res, next) => {
@@ -23,7 +25,7 @@ app.use((err, req, res, next) => {
 });
 
 const corsOptions = {
-  origin: [`${process.env.FRONTEND_URL}`],
+  origin: frontendUrl,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
@@ -51,8 +53,8 @@ const server = createServer(app);
 
 const io = new Server(server, {
   pingTimeout: 60000,
-  cors:{
-    origin: `${process.env.FRONTEND_URL}`,
+  cors: {
+    origin: frontendUrl,
     methods: ["GET", "POST"],
   },
 });
