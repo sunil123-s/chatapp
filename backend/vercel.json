@@ -1,0 +1,40 @@
+{
+    "installCommand" : "npm install --legacy-peer-deps",
+    "version" : 2,
+    "builds": [
+        {
+            "src" : "backend/src/server.js",
+            "use" : "@vercel/node"
+        },
+        {
+            "src" : "frontend/src/**/*",
+            "use" : "@vercel/static"
+        }
+    ],
+    "routes":[
+      {
+        "src": "/auth/(.*)",
+        "dest": "backend/src/server.js"
+      },
+      {
+        "src": "/chat/(.*)",
+        "dest": "backend/src/server.js"
+      },
+      {
+        "src": "/user/(.*)",
+        "dest": "backend/src/server.js"
+      },
+      {
+        "src": "/message/(.*)",
+        "dest": "backend/src/server.js"
+      },
+      {
+        "src": "/uploads/(.*)",
+        "dest": "backend/src/public/uploads/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "frontend/public/$1"
+      }
+    ]
+}   
