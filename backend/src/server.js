@@ -15,7 +15,6 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 const PORT = process.env.PORT || 8000;
-const frontendUrl = process.env.FRONTEND_URL || "https://chatapp-beta-nine.vercel.app";
 
 const app = express();
 
@@ -23,6 +22,8 @@ app.use((err, req, res, next) => {
   console.error("Error:", err);
   res.status(500).json({ error: err.message });
 });
+
+const frontendUrl = process.env.FRONTEND_URL || "https://chatapp-beta-nine.vercel.app";
 
 const corsOptions = {
   origin: frontendUrl,
@@ -33,8 +34,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(express.json());
-app.use("/uploads", express.static(path.join(__dirname, "./public/uploads")));
 app.use(express.urlencoded({ extended: true }));
+
+app.use("/uploads", express.static(path.join(__dirname, "./public/uploads")));
 app.use("/auth", authRoutes);
 app.use("/chat", chatRoutes);
 app.use("/user", userRoutes);

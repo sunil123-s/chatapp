@@ -3,38 +3,34 @@
     "version" : 2,
     "builds": [
         {
-            "src" : "backend/src/server.js",
+            "src" : "/src/server.js",
             "use" : "@vercel/node"
         },
         {
-            "src" : "frontend/src/**/*",
+            "src" : "frontend/public/**/*",
             "use" : "@vercel/static"
         }
     ],
     "routes":[
       {
         "src": "/auth/(.*)",
-        "dest": "backend/src/server.js"
+        "dest": "/src/server.js"
       },
       {
         "src": "/chat/(.*)",
-        "dest": "backend/src/server.js"
+        "dest": "/src/server.js"
       },
       {
         "src": "/user/(.*)",
-        "dest": "backend/src/server.js"
+        "dest": "/src/server.js"
       },
       {
         "src": "/message/(.*)",
-        "dest": "backend/src/server.js"
+        "dest": "/src/server.js"
       },
       {
         "src": "/uploads/(.*)",
-        "dest": "backend/src/public/uploads/$1"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "frontend/public/$1"
+        "dest": "/src/public/uploads/$1"
       }
     ]
 }   
