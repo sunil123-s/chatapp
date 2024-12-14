@@ -23,10 +23,10 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: err.message });
 });
 
-const frontendUrl = process.env.FRONTEND_URL || "https://chatapp-beta-nine.vercel.app";
+const frontendUrl = process.env.FRONTEND_URL;
 
 const corsOptions = {
-  origin: frontendUrl,
+  origin: [`${process.env.FRONTEND_URL}`],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };

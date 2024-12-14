@@ -13,7 +13,6 @@ const __dirname = path.dirname(__filename);
 const router = express.Router()
 
 dotenv.config()
-console.log("Environment Variables: ", process.env)
 const jwt_token = process.env.JWT_SECRET;
 if(!jwt_token){console.log("jwt is not provided")}
 
