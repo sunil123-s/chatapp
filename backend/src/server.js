@@ -24,6 +24,7 @@ app.use((err, req, res, next) => {
 });
 
 const frontendUrl = process.env.FRONTEND_URL;
+console.log(process.env.FRONTEND_URL)
 
 const corsOptions = {
   origin: [`${process.env.FRONTEND_URL}`],
