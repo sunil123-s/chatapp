@@ -90,8 +90,14 @@ router.post("/login",async(req,res) => {
         }})
 
     } catch (error) {
-         console.error("Error creating user:", error);
-         return res.status(500).json({ error: "internal server error" });
+         console.error("Login error details:", {
+           message: error.message,
+           stack: error.stack,
+         });
+          return res.status(500).json({
+            error: "Internal server error",
+            details: error.message,
+          });
     }
 })
 
