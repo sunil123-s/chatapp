@@ -20,11 +20,7 @@ const Profile = ({ user }) => {
           <h1 className="text-lg sm:text-2xl font-bold">{user?.fullName}</h1>
           <img
             className="rounded-full w-24 h-24 sm:w-32 sm:h-32"
-            src={
-              user?.profileImg
-                ? `${process.env.REACT_APP_BACKEND_URL}/uploads/${user?.profileImg}`
-                : "/avatar-placeholder.png"
-            }
+            src={user?.profileImg ? user?.profileImg : "/avatar-placeholder.png"}
             alt={user ? user.fullName[0] : "G"}
           />
         </div>

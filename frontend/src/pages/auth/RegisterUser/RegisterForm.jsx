@@ -4,6 +4,7 @@ import {useSignup}  from "../../../hooks/useSignup"
 import toast from "react-hot-toast";
 import { useLogin } from "../../../hooks/useLogin";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../../../component/util/Spinner";
 
 const RegisterForm = () => {
   const [isSignUp, setisSignUp] = useState(true);
@@ -32,8 +33,9 @@ const RegisterForm = () => {
           navigate("/");
           setFormData({fullName: "",userName: "",password: "",profileImg: "",});
         },
-        onError: () => {
+        onError: (error) => {
           toast.error("Something went wrong");
+          console.log(error);
         },  
       });
     } else {
@@ -54,7 +56,7 @@ const RegisterForm = () => {
 
   const handleInfo = (e) => {
     const { name, files, value } = e.target;
-
+    
     setFormData(
       {...formData, [name]: files ? files[0] : value}
     )};
@@ -129,12 +131,18 @@ const RegisterForm = () => {
                   />
                 </div>
               )}
+              {(signError || loginError) && (
+                <p className="text-red-500 text-center text-sm mt-2">
+                  {signError?.response?.data?.error ||
+                    loginError?.response?.data?.error}
+                </p>
+              )}
               <button
                 type="submit"
                 disabled={signLoading || loginLoading}
                 className="w-full py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700"
               >
-                {formTitle}
+                {signLoading || loginLoading ? <Spinner /> : formTitle}
               </button>
               <p className="text-center text-sm mt-4">
                 {accountPrompt}

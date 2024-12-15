@@ -47,11 +47,7 @@ const NavBar = () => {
           >
             <img
               className="rounded-full w-8 h-8 sm:w-10 sm:h-10"
-              src={
-                user?.profileImg
-                  ? `${process.env.REACT_APP_BACKEND_URL}/uploads/${user?.profileImg}`
-                  : "/avatar-placeholder.png"
-              }
+              src={user?.profileImg ?  user?.profileImg : "/avatar-placeholder.png"}
               alt={user ? user.fullName[0].toUpperCase() : "G"}
             />
             <FaChevronDown className="text-xs sm:text-sm md:text-base" />

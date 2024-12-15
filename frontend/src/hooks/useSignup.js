@@ -1,12 +1,11 @@
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios";
-// import BaseUrl from "./useAxios";
-
 
 export const useSignup = () => {
 
     const {mutate:signup,isLoading,error,isError} = useMutation({
         mutationFn: async(formdata) => {
+
            const data = new FormData();
            data.append("fullName", formdata.fullName);
            data.append("userName", formdata.userName);
@@ -25,7 +24,6 @@ export const useSignup = () => {
             }
           );
           const response = res.data
-          console.log(response);
           return response;
         },
         onError:() => {
@@ -35,4 +33,3 @@ export const useSignup = () => {
 
     return {signup,isLoading,error,isError}
 }
-

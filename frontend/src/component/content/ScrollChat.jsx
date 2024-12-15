@@ -28,10 +28,7 @@ const ScrollChat = ({ message, loggedInUser }) => {
                 <div className="flex items-center mr-2">
                   <img
                     className="rounded-full w-8 h-8 md:w-9 md:h-9 self-start"
-                    src={
-                      mess?.sender.profileImg
-                        ? `${process.env.REACT_APP_BACKEND_URL}/uploads/${mess.sender.profileImg}`
-                        : "/avatar-placeholder.png"
+                    src={mess.sender?.profileImg ? mess.sender?.profileImg : "/avatar-placeholder.png"
                     }
                     alt={`${mess.sender.userName}'s profile`}
                   />

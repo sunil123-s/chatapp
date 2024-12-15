@@ -183,10 +183,7 @@ const GroupProfile = ({group}) => {
             >
               <img
                 className="w-10 h-10 rounded-full"
-                src={
-                  user?.profileImg
-                    ? `${process.env.REACT_APP_BACKEND_URL}/uploads/${user.profileImg}`
-                    : "/avatar-placeholder.png"
+                src={user?.profileImg ? user?.profileImg : "/avatar-placeholder.png"
                 }
                 alt={user.userName}
               />

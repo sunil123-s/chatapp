@@ -5,16 +5,15 @@ import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import path from "path";
-import { fileURLToPath } from "url";
+import { v2 as cloudinary } from "cloudinary";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import cors from "cors"
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 dotenv.config();
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const PORT = process.env.PORT || 8000;
+const frontendUrl = process.env.FRONTEND_URL;
 
 const app = express();
 
@@ -23,8 +22,11 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: err.message });
 });
 
-const frontendUrl = process.env.FRONTEND_URL;
-console.log(process.env.FRONTEND_URL)
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 const corsOptions = {
   origin: process.env.FRONTEND_URL || "*",
@@ -36,8 +38,8 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-app.use("/uploads", express.static(path.join(__dirname, "./public/uploads")));
 app.use("/auth", authRoutes);
 app.use("/chat", chatRoutes);
 app.use("/user", userRoutes);
