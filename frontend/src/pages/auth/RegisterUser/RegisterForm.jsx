@@ -28,6 +28,7 @@ const RegisterForm = () => {
     if (isSignUp) {
       signup(formData, {
         onSuccess: (response) => {
+          console.log("FormData to send:", response);
           toast.success("User created");
           localStorage.setItem("token", JSON.stringify(response.user));
           navigate("/");

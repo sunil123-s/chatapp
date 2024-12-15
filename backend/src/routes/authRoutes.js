@@ -20,6 +20,7 @@ router.post("/signup",localupload, async (req, res) => {
     try {
         const {userName, fullName, password} = req.body;
         const profileImg = req.file;
+        console.log("Profile image received:", req.file);
         
         if(!userName || !password || !fullName) {
             return res.status(400).json({error:"required field"})
@@ -40,6 +41,7 @@ router.post("/signup",localupload, async (req, res) => {
                   folder: "profiles" },
                    (error, result) => {
                     if (error) {
+                      console.error("Cloudinary upload error:", error);
                       reject(new Error("Error uploading profile image"));
                     } else {
                       resolve(result.secure_url); // Resolve with the URL
