@@ -8,8 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon src/server.js",
     "dev": "node src/server.js",
-    "vercel-build": "prisma generate --schema=./src/prisma/schema.prisma && prisma migrate deploy --schema=./src/prisma/schema.prisma",
-    "postinstall": "npx prisma generate --schema=./src/prisma/schema.prisma"
+    "vercel-build": "prisma generate --schema=./src/prisma/schema.prisma "
   },
   "author": "sunil",
   "license": "ISC",
