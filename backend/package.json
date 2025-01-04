@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node src/server.js",
     "start": "nodemon src/server.js",
-    "build" : "src/prisma/schema.prisma"
+    "build": "npx prisma generate --schema=src/prisma/schema.prisma"
   },
   "author": "sunil",
   "license": "ISC",
