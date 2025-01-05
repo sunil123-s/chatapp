@@ -45,15 +45,6 @@ app.use("/chat", chatRoutes);
 app.use("/user", userRoutes);
 app.use("/message", messageRoutes);
 
-const __dirname1 = path.resolve();
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname1, "/frontend/dist")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname1, "frontend", "dist", "index.html"));
-  });
-}
-
 const server = createServer(app);
 
 const io = new Server(server, {
