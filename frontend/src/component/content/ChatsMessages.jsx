@@ -92,7 +92,7 @@ const ChatsMessages = () => {
     queryFn: async () => {
       if (!selectedChat?.id) return [];
       const res = await axios.get(
-        `/message/${selectedChat.id}`,
+        `${import.meta.env.VITE_BACKEND_API_URL}/message/${selectedChat.id}`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -122,7 +122,7 @@ const ChatsMessages = () => {
   const { mutate: sending } = useMutation({
     mutationFn: async (messageData) => {
       const res = await axios.post(
-        `/message/send`,
+        `${import.meta.env.VITE_BACKEND_API_URL}/message/send`,
         messageData,
         {
           headers: {
